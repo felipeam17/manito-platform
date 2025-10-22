@@ -1,0 +1,8 @@
+# 1. Agregar el archivo vercel.json actualizado
+git add vercel.json
+
+# 2. Hacer commit
+git commit -m "Fix vercel.json for monorepo build"
+
+# 3. Subir a GitHub
+git push origin main
