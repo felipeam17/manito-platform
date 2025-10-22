@@ -11,7 +11,7 @@ import { Alert, AlertDescription } from "@/components/ui";
 import { RadioGroup, RadioGroupItem } from "@/components/ui";
 import { Checkbox } from "@/components/ui";
 import { Eye, EyeOff, Mail, Lock, User, Phone, ArrowLeft, Check } from "lucide-react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/ssr";
 import { toast } from "react-hot-toast";
 
 export default function RegisterPage() {
@@ -31,7 +31,7 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));

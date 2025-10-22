@@ -17,7 +17,7 @@ import {
   CheckCircle,
   AlertCircle
 } from "lucide-react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/ssr";
 import { toast } from "react-hot-toast";
 
 interface User {
@@ -49,7 +49,7 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
   
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   useEffect(() => {
     const getUser = async () => {

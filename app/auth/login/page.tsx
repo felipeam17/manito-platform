@@ -9,7 +9,7 @@ import { Label } from "@/components/ui";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
 import { Alert, AlertDescription } from "@/components/ui";
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from "lucide-react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/supabase-js";
 import { toast } from "react-hot-toast";
 
 export default function LoginPage() {
@@ -20,7 +20,10 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

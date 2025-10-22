@@ -19,7 +19,7 @@ import {
   Camera,
   AlertTriangle
 } from "lucide-react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/ssr";
 import { toast } from "react-hot-toast";
 import { KycSubmissionWithUser } from "@/types";
 
@@ -31,7 +31,7 @@ export default function AdminKycPage() {
   const [reviewNotes, setReviewNotes] = useState("");
   const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('pending');
   
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   useEffect(() => {
     loadSubmissions();

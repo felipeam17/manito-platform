@@ -1,6 +1,6 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createClient } from '@supabase/ssr';
 
-export const supabase = createClientComponentClient();
+export const supabase = createClient();
 
 export const storage = {
   // KYC Documents

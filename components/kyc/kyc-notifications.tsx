@@ -13,7 +13,7 @@ import {
   AlertTriangle,
   Shield
 } from "lucide-react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/ssr";
 import { useAuth } from "@/hooks/use-auth";
 import { KycSubmissionWithUser } from "@/types";
 
@@ -21,7 +21,7 @@ export function KycNotifications() {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   useEffect(() => {
     if (user?.id) {

@@ -13,7 +13,7 @@ import {
   Users,
   AlertTriangle
 } from "lucide-react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/ssr";
 
 interface KycStats {
   total: number;
@@ -32,7 +32,7 @@ export function KycStats() {
     pendingReview: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   useEffect(() => {
     loadStats();

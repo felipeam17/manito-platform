@@ -7,14 +7,14 @@ import { Button } from "@/components/ui";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
 import { Alert, AlertDescription } from "@/components/ui";
 import { Mail, CheckCircle, ArrowLeft, RefreshCw } from "lucide-react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/ssr";
 import { toast } from "react-hot-toast";
 
 export default function VerifyPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
 
   useEffect(() => {
     // Obtener el email del usuario actual

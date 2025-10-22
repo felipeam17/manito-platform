@@ -19,7 +19,7 @@ import {
   ArrowLeft,
   ArrowRight
 } from "lucide-react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@supabase/ssr";
 import { toast } from "react-hot-toast";
 import { kycSubmissionSchema } from "@/lib/validations";
 import { useAuth } from "@/hooks/use-auth";
@@ -39,7 +39,7 @@ export default function KycPage() {
   });
   
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClient();
   const { user } = useAuth();
 
   const steps = [
