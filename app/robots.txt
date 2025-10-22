@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manito.com/sitemap.xml
