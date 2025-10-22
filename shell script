@@ -1,17 +1,8 @@
-# 1. Inicializar git (si no está inicializado)
-git init
+# 1. Agregar el archivo vercel.json
+git add vercel.json
 
-# 2. Agregar todos los archivos
-git add .
+# 2. Hacer commit
+git commit -m "Add vercel.json for monorepo deployment"
 
-# 3. Hacer el primer commit
-git commit -m "Initial commit: MANITO Platform MVP with KYC system"
-
-# 4. Conectar con GitHub (reemplaza 'tu-usuario' con tu nombre de usuario)
-git remote add origin https://github.com/tu-usuario/manito-platform.git
-
-# 5. Cambiar a rama main
-git branch -M main
-
-# 6. Subir el código
-git push -u origin main
+# 3. Subir a GitHub
+git push origin main
