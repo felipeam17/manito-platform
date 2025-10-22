@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/ssr';
+import { createClient } from '@supabase/supabase-js';
 import { User } from '@supabase/supabase-js';
 import { AuthUser } from '@/types';
 
