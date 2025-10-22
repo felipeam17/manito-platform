@@ -16,8 +16,6 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
-    "@manito/db": "workspace:*",
-    "@manito/ui": "workspace:*",
     "@hookform/resolvers": "^3.3.2",
     "@next/font": "^14.0.0",
     "@prisma/client": "^5.6.0",
