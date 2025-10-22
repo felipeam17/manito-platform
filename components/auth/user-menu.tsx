@@ -56,7 +56,7 @@ export function UserMenu() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.avatarUrl} alt={user.name || ''} />
+            <AvatarImage src={user.avatarUrl || undefined} alt={user.name || ''} />
             <AvatarFallback>
               {user.name?.split(' ').map(n => n[0]).join('') || 'U'}
             </AvatarFallback>
@@ -103,7 +103,7 @@ export function UserMenu() {
           <span>Configuración</span>
         </DropdownMenuItem>
         
-        {user.role === 'PRO' && user.ratingCount > 0 && (
+        {user.role === 'PRO' && (user.ratingCount || 0) > 0 && (
           <DropdownMenuItem onClick={() => router.push('/reviews')}>
             <Star className="mr-2 h-4 w-4" />
             <span>Reseñas ({user.ratingCount})</span>

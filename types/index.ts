@@ -1,11 +1,16 @@
-import { User, Role, KycStatus, BookingStatus, PricingType } from '@manito/db';
+import { User, Role, KycStatus, BookingStatus, PricingType } from '@prisma/client';
 
 export type { User, Role, KycStatus, BookingStatus, PricingType };
 
-export interface AuthUser extends User {
+export interface AuthUser {
   id: string;
+  email: string;
   role: Role;
   kycStatus: KycStatus;
+  avatarUrl?: string | null;
+  name?: string | null;
+  ratingAvg?: number;
+  ratingCount?: number;
 }
 
 export interface ServiceWithDetails {

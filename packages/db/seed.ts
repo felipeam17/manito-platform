@@ -332,7 +332,7 @@ async function main() {
         clientId: clients[0].id,
         proId: pros[0].id,
         serviceId: services[0].id,
-        addressId: clients[0].addresses[0].id,
+        addressId: (await prisma.address.findFirst({ where: { userId: clients[0].id } }))?.id || '',
         startAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // Tomorrow
         endAt: new Date(Date.now() + 24 * 60 * 60 * 1000 + 60 * 60 * 1000), // Tomorrow + 1 hour
         status: BookingStatus.CONFIRMED,
@@ -346,7 +346,7 @@ async function main() {
         clientId: clients[1].id,
         proId: pros[1].id,
         serviceId: services[2].id,
-        addressId: clients[1].addresses[0].id,
+        addressId: (await prisma.address.findFirst({ where: { userId: clients[1].id } }))?.id || '',
         startAt: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // Day after tomorrow
         endAt: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000 + 2 * 60 * 60 * 1000), // Day after tomorrow + 2 hours
         status: BookingStatus.PENDING,
