@@ -1,33 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   images: {
     domains: [
       "localhost",
       "supabase.co",
       "images.unsplash.com",
       "via.placeholder.com",
-      "lh3.googleusercontent.com", // Google OAuth avatars
+      "lh3.googleusercontent.com",
     ],
-  },
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
-  },
-  // PWA configuration
-  async headers() {
-    return [
-      {
-        source: '/manifest.json',
-        headers: [
-          {
-            key: 'Content-Type',
-            value: 'application/manifest+json',
-          },
-        ],
-      },
-    ];
   },
   // Redirects for SEO
   async redirects() {
@@ -66,8 +46,6 @@ const nextConfig = {
       },
     ];
   },
-  // Output configuration for Vercel
-  output: 'standalone',
 };
 
 module.exports = nextConfig;
