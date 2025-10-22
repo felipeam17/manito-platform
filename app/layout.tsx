@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   authors: [{ name: "MANITO Team" }],
   viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
+  manifest: "/manifest.json",
+  themeColor: "#1a9d9f",
   openGraph: {
     title: "MANITO - Marketplace de Oficios",
     description: "Conectamos clientes con profesionales de confianza para todos tus oficios",
