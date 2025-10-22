@@ -15,7 +15,7 @@ import {
   Camera,
   Upload
 } from "lucide-react";
-import { createClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { useAuth } from "@/hooks/use-auth";
 import { KycSubmissionWithUser } from "@/types";
 

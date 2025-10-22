@@ -17,7 +17,7 @@ import {
   CheckCircle,
   AlertCircle
 } from "lucide-react";
-import { createClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { toast } from "react-hot-toast";
 
 interface User {

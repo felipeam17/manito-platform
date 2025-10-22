@@ -19,7 +19,7 @@ import {
   ArrowLeft,
   ArrowRight
 } from "lucide-react";
-import { createClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { toast } from "react-hot-toast";
 import { kycSubmissionSchema } from "@/lib/validations";
 import { useAuth } from "@/hooks/use-auth";

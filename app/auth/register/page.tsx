@@ -11,7 +11,7 @@ import { Alert, AlertDescription } from "@/components/ui";
 import { RadioGroup, RadioGroupItem } from "@/components/ui";
 import { Checkbox } from "@/components/ui";
 import { Eye, EyeOff, Mail, Lock, User, Phone, ArrowLeft, Check } from "lucide-react";
-import { createClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { toast } from "react-hot-toast";
 
 export default function RegisterPage() {

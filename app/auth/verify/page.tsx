@@ -7,7 +7,7 @@ import { Button } from "@/components/ui";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
 import { Alert, AlertDescription } from "@/components/ui";
 import { Mail, CheckCircle, ArrowLeft, RefreshCw } from "lucide-react";
-import { createClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { toast } from "react-hot-toast";
 
 export default function VerifyPage() {

@@ -13,7 +13,7 @@ import {
   Users,
   AlertTriangle
 } from "lucide-react";
-import { createClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 
 interface KycStats {
   total: number;
