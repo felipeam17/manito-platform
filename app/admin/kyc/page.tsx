@@ -93,7 +93,7 @@ export default function AdminKycPage() {
           kycStatus: status,
           updatedAt: new Date().toISOString(),
         })
-        .eq('id', selectedSubmission?.userId);
+        .eq('id', selectedSubmission?.user.id);
 
       if (userError) {
         console.error('Error updating user status:', userError);
