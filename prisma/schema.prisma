@@ -52,7 +52,8 @@ model User {
   services     Service[]
   clientBookings Booking[] @relation("Client")
   proBookings  Booking[] @relation("Pro")
-  reviews      Review[]
+  reviewsAsClient Review[] @relation("ReviewClient")
+  reviewsAsPro   Review[] @relation("ReviewPro")
   inventoryItems InventoryItem[]
   auditLogs    AuditLog[]
   createdAt    DateTime @default(now())
@@ -214,8 +215,8 @@ model Review {
   comment   String?
   images    String[] @default([])
   booking   Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
-  client    User    @relation(fields: [clientId], references: [id])
-  pro       User    @relation(fields: [proId], references: [id])
+  client    User    @relation("ReviewClient", fields: [clientId], references: [id])
+  pro       User    @relation("ReviewPro", fields: [proId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
