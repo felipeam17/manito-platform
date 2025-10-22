@@ -41,7 +41,7 @@ export function CTA() {
               </div>
             </div>
             <p className="text-manito-100 mb-6">
-              Simplemente escribe "Hola" a nuestro número de WhatsApp y te ayudaremos a encontrar el servicio que necesitas.
+              Simplemente escribe &quot;Hola&quot; a nuestro número de WhatsApp y te ayudaremos a encontrar el servicio que necesitas.
             </p>
             <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white" asChild>
               <Link href="https://wa.me/50712345678" target="_blank">
