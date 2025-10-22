@@ -31,7 +31,7 @@ export default function AdminKycPage() {
   const [reviewNotes, setReviewNotes] = useState("");
   const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('pending');
   
-  const supabase = createClient();
+  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 
   useEffect(() => {
     loadSubmissions();

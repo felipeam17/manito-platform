@@ -49,7 +49,7 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
   
   const router = useRouter();
-  const supabase = createClient();
+  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 
   useEffect(() => {
     const getUser = async () => {
