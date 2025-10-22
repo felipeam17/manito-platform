@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@manito/ui";
-import { Input } from "@manito/ui";
-import { Label } from "@manito/ui";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@manito/ui";
-import { Alert, AlertDescription } from "@manito/ui";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@manito/ui";
-import { Progress } from "@manito/ui";
+import { Button } from "@/components/ui";
+import { Input } from "@/components/ui";
+import { Label } from "@/components/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
+import { Alert, AlertDescription } from "@/components/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui";
+import { Progress } from "@/components/ui";
 import { 
   Upload, 
   Camera, 

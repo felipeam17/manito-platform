@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@manito/ui";
+import { Button } from "@/components/ui";
 import { ArrowRight, Smartphone, MessageCircle } from "lucide-react";
 
 export function CTA() {

@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@manito/ui";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@manito/ui";
-import { Badge } from "@manito/ui";
-import { Avatar, AvatarFallback, AvatarImage } from "@manito/ui";
+import { Button } from "@/components/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
+import { Badge } from "@/components/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui";
 import { 
   Calendar, 
   DollarSign, 

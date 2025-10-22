@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@manito/ui";
+import { Button } from "@/components/ui";
 import { Menu, X } from "lucide-react";
 import { UserMenu } from "@/components/auth/user-menu";
 

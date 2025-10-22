@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@manito/ui";
-import { Badge } from "@manito/ui";
-import { Button } from "@manito/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
+import { Badge } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { 
   Shield, 
   CheckCircle, 

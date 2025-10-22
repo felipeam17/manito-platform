@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@manito/ui";
+import { Button } from "@/components/ui";
 import { Search, MapPin, Calendar, Star, Shield, Clock } from "lucide-react";
 
 export function Hero() {

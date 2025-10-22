@@ -2,9 +2,9 @@
 
 import { AuthGuard } from "@/components/auth/auth-guard";
 import { KycStats } from "@/components/admin/kyc-stats";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@manito/ui";
-import { Badge } from "@manito/ui";
-import { Button } from "@manito/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
+import { Badge } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { 
   Users, 
   Shield, 

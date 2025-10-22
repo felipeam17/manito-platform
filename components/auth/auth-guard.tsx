@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/use-auth';
-import { Skeleton } from '@manito/ui';
+import { Skeleton } from '@/components/ui';
 
 interface AuthGuardProps {
   children: React.ReactNode;

@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { AuthGuard } from "@/components/auth/auth-guard";
-import { Button } from "@manito/ui";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@manito/ui";
-import { Badge } from "@manito/ui";
-import { Alert, AlertDescription } from "@manito/ui";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@manito/ui";
-import { Textarea } from "@manito/ui";
+import { Button } from "@/components/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui";
+import { Badge } from "@/components/ui";
+import { Alert, AlertDescription } from "@/components/ui";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui";
+import { Textarea } from "@/components/ui";
 import { 
   Shield, 
   CheckCircle, 

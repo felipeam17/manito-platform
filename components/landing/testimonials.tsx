@@ -1,5 +1,5 @@
 import { Star, Quote } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@manito/ui";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui";
 
 const testimonials = [
   {

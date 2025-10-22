@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@manito/ui';
-import { Avatar, AvatarFallback, AvatarImage } from '@manito/ui';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@manito/ui';
-import { Badge } from '@manito/ui';
+import { Button } from '@/components/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui';
+import { Badge } from '@/components/ui';
 import { User, Settings, LogOut, Shield, Star } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { toast } from 'react-hot-toast';
