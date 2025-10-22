@@ -3,6 +3,7 @@ import { User, Role, KycStatus, BookingStatus, PricingType } from '@manito/db';
 export type { User, Role, KycStatus, BookingStatus, PricingType };
 
 export interface AuthUser extends User {
+  id: string;
   role: Role;
   kycStatus: KycStatus;
 }
