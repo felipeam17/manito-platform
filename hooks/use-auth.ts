@@ -2,71 +2,166 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { User } from '@supabase/supabase-js';
-import { AuthUser } from '@/types';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
+import type { AuthUser } from '@/types';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+);
 
 export function useAuth() {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+  const router = useRouter();
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const { data: { user: authUser } } = await supabase.auth.getUser();
-        
-        if (authUser) {
-          // Obtener datos completos del usuario
-          const { data: userData } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', authUser.id)
-            .single();
-
-          if (userData) {
-            setUser(userData);
-          }
-        }
-      } catch (error) {
-        console.error('Error loading user:', error);
-      } finally {
+    // Get initial session
+    const getSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        await loadUserProfile(session.user.id);
+      } else {
         setLoading(false);
       }
     };
 
-    getUser();
+    getSession();
 
-    // Escuchar cambios en la autenticación
+    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (session?.user) {
-          const { data: userData } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', session.user.id)
-            .single();
-
-          if (userData) {
-            setUser(userData);
-          }
+          await loadUserProfile(session.user.id);
         } else {
           setUser(null);
+          setLoading(false);
         }
-        setLoading(false);
       }
     );
 
     return () => subscription.unsubscribe();
-  }, [supabase]);
+  }, []);
+
+  const loadUserProfile = async (userId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (error) {
+        console.error('Error loading user profile:', error);
+        setLoading(false);
+        return;
+      }
+
+      setUser(data);
+    } catch (error) {
+      console.error('Error loading user profile:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signUp = async (userData: {
+    email: string;
+    password: string;
+    name: string;
+    phone: string;
+    role: 'CLIENT' | 'PRO';
+  }) => {
+    try {
+      setLoading(true);
+
+      // Create auth user
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: userData.email,
+        password: userData.password,
+      });
+
+      if (authError) {
+        throw new Error(authError.message);
+      }
+
+      if (!authData.user) {
+        throw new Error('No se pudo crear el usuario');
+      }
+
+      // Create user profile using a server action or API route
+      const response = await fetch('/api/auth/create-profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: authData.user.id,
+          email: userData.email,
+          name: userData.name,
+          phone: userData.phone,
+          role: userData.role,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al crear el perfil');
+      }
+
+      toast.success('Cuenta creada exitosamente. Revisa tu email para verificar tu cuenta.');
+      return { success: true };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      toast.error(errorMessage);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signIn = async (email: string, password: string) => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      toast.success('Inicio de sesión exitoso');
+      router.push('/dashboard');
+      return { success: true };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Error de autenticación';
+      toast.error(errorMessage);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
+    try {
+      await supabase.auth.signOut();
+      setUser(null);
+      router.push('/');
+      toast.success('Sesión cerrada exitosamente');
+    } catch (error) {
+      console.error('Error signing out:', error);
+      toast.error('Error al cerrar sesión');
+    }
   };
 
   return {
     user,
     loading,
+    signUp,
+    signIn,
     signOut,
   };
 }

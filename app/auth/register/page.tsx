@@ -11,8 +11,8 @@ import { Alert, AlertDescription } from "@/components/ui";
 import { RadioGroup, RadioGroupItem } from "@/components/ui";
 import { Checkbox } from "@/components/ui";
 import { Eye, EyeOff, Mail, Lock, User, Phone, ArrowLeft, Check } from "lucide-react";
-import { createClient } from "@supabase/supabase-js";
 import { toast } from "react-hot-toast";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
@@ -31,7 +31,7 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   
   const router = useRouter();
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+  const { signUp } = useAuth();
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -81,57 +81,18 @@ export default function RegisterPage() {
     setError("");
 
     try {
-      // Crear usuario en Supabase Auth
-      const { data: authData, error: authError } = await supabase.auth.signUp({
+      await signUp({
         email: formData.email,
         password: formData.password,
+        name: formData.name,
+        phone: formData.phone,
+        role: formData.role,
       });
 
-      if (authError) {
-        setError(authError.message);
-        return;
-      }
-
-      if (authData.user) {
-        // Crear perfil de usuario en la base de datos
-        const { error: profileError } = await supabase
-          .from("users")
-          .insert({
-            id: authData.user.id,
-            email: formData.email,
-            name: formData.name,
-            phone: formData.phone,
-            role: formData.role,
-            kycStatus: formData.role === "PRO" ? "PENDING_REVIEW" : "APPROVED",
-          });
-
-        if (profileError) {
-          setError("Error al crear el perfil. Inténtalo de nuevo.");
-          return;
-        }
-
-        // Si es profesional, crear perfil profesional
-        if (formData.role === "PRO") {
-          const { error: proError } = await supabase
-            .from("pro_profiles")
-            .insert({
-              userId: authData.user.id,
-              bio: "",
-              serviceRadiusKm: 20,
-              coverageCities: [],
-              availability: {},
-            });
-
-          if (proError) {
-            console.error("Error creating pro profile:", proError);
-          }
-        }
-
-        toast.success("¡Cuenta creada exitosamente!");
-        router.push("/auth/verify");
-      }
+      router.push("/auth/verify");
     } catch (error) {
-      setError("Error inesperado. Inténtalo de nuevo.");
+      console.error("Registration error:", error);
+      setError("Error al crear la cuenta. Inténtalo de nuevo.");
     } finally {
       setIsLoading(false);
     }
